@@ -27,5 +27,10 @@
 
 		{"title": "SignUp",
 		 "act": "signup",
-		 "sub": null}
-		]}
+		 "sub": [
+				{"title": "Show Name",
+			 	 "act": "show_name",
+         	 	 "sub": null}
+		 		]}
+		]
+}
