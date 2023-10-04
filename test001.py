@@ -3,7 +3,7 @@ from sys import argv
 
 class test:
     def __init__(self):
-        self.flag = False
+        self.flag = True # just for now its True for texting but next time must change to False
         self.f_name = "Parsa"
         self.l_name = "Ahmadian"
         self.nickname = "PKPY"

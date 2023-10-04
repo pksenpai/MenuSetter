@@ -1,13 +1,14 @@
 import importlib
 from MenuSetter import call_menu
+import test001
 # from users import User
 
 
 class MainMenu:
-    def __init__(self, module, method, args, __class, attribute) -> None:
+    def __init__(self, module, method, args, className, attribute):
         self.attribute = attribute
         self.attribute: str
-        self._class = __class
+        self.className = className
         self.module = module
         self.method = method
         self.args = args
@@ -16,9 +17,9 @@ class MainMenu:
     @staticmethod
     def show_menu() -> str:
         """method of menu_setter module, show menu and call action at end"""
-        action = call_menu() # type: ignore
+        action = call_menu()
         print(action)
-        return action # type: ignore
+        return action 
     """
     ---------------------------------------------------------------------------
     """
@@ -32,15 +33,18 @@ class MainMenu:
         Call class and class attribute's from
         class caller method & Create an object 
         """
-        print('before obj')
-        if not self.attribute:
-            self.obj = getattr(self.module, (eval(self._class)())) # class Word -> class : obj = Word()
-            return self.obj
-        # obj = users.User(att)
-        self.obj = eval(self._class)(self.attribute.split())
-        # self.obj = getattr(self.module, eval(self._class))(map(str, self.attribute.split()))
-        print(self.obj)
-        return self.obj
+        
+        if self.attribute:
+            obj_syntax_creator = '{0}.{1}({2})'.format(self.module, self.className, self.attribute) # obj = ModuleName.ClassName(AttributesName)
+        # 
+        else:
+            obj_syntax_creator = '{0}.{1}()'.format(self.module, self.className) # obj = ModuleName.ClassName()
+            
+        self.obj = eval(obj_syntax_creator) 
+        
+        self.obj.show_name()
+        # print(self.obj)
+        # return self.obj
     
     def method_caller(self):
         self.method = self.show_menu()
@@ -51,9 +55,9 @@ class MainMenu:
     """
     def class_caller(self):
         """ input class name """
-        self._class = input('class name?>>> ')
+        self.className = input('class name?>>> ')
         self.attribute = input('class attributes?>>> ')
-        if self._class == 'Back' or self.attribute == 'Back':
+        if self.className == 'Back' or self.attribute == 'Back':
             Command.connector(self) # type: ignore
 
         MainMenu.obj_caller(self)
@@ -101,10 +105,15 @@ class Command(MainMenu):
             print(error)
 
         
-start_obj = Command()
-start_obj.connector()
+# start_obj = Command() # ONE QUESTION : i didn't create object before, how call MenuSetter module without create class obj? **
+# start_obj.connector()
 
 """
 bugs: 
-1.repeat menu in BaseMenu file
+1.repeat menu in BaseMenu file # its fixed with commented line 108 and 109 that called class and created object but how?!
 """
+
+""" TEST CALL"""
+# def __init__(self, module, method, args, className, attribute):
+obj1 = MainMenu('test001', None, None, 'test', None)
+obj1.obj_caller()

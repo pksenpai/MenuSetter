@@ -117,7 +117,7 @@ class menu_shape(menu_center):
         return super().menu_print()
     
     def open_data(self):
-        file_path = path.join('menu_json', 'menu_data.json') # data file address
+        file_path = path.join('menu_input', 'input.json') # data file address
 
         with open(file_path) as data_menu_json:
             self.menu_instance = load(data_menu_json)
