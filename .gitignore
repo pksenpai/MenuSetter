@@ -6,3 +6,5 @@ __pycache__/
 # Git stuff:
 .gitattributes
 
+# Pending files:
+/modules
