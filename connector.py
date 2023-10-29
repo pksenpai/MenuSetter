@@ -1,20 +1,17 @@
 from core import MainMenu
-import test001
 
 
-
-def connect(self):
+def connect(core):
     try:
         """ Call Action from Main Menu """
-        method_str, args = core.method_caller()
-        print(method_str)
-        if method_str == 'Back' or args == 'Back':
-            connect()
+        method_name, args = core.method_caller() # 4Example: method_name, args = print, "Hello World!"
+        # print(method_name)
+        # if method_name == 'Back' or args == 'Back':
+        #     connect()
 
-        """ Call Module and Create an object from class """
-        core.module_caller()
+        """ Create an object from class """
         obj = core.obj_caller()
-        method = getattr(obj, method_str)
+        method = getattr(obj, method_name)
 
         """ The method may have no arguments """
         if not args:
@@ -23,7 +20,7 @@ def connect(self):
             method(args)
         
         """ Loop Menu """
-        connect()
+        connect(core)
 
     except NameError as error:
         print(error)
@@ -32,6 +29,6 @@ def connect(self):
 
         
 """ TEST CALL"""
-# def __init__(self, module, method, args, className, attribute):
-core = MainMenu('test001', None, None, 'test', None)
-connect(core)
+# object = CoreClassName(moduleName, methodName, args, className, attribute)
+core_obj = MainMenu('test001', None, None, 'test', None)
+connect(core_obj)

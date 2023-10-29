@@ -121,7 +121,7 @@ class menu_shape(menu_center):
 
         with open(file_path) as data_menu_json:
             self.menu_instance = load(data_menu_json)
-        print('extract data successfuly!')
+        print('data extracted successfuly!')
         self.menu_print()
         return self.action
 
