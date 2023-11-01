@@ -4,4 +4,4 @@ a dynamic menu for easier customization. <br>
  
 # How To Use?
 first pip this:
-<script> pip install menu_setter </script>
+``` pip install menu_setter ```
