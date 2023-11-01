@@ -5,3 +5,5 @@ a dynamic menu for easier customization. <br>
 # How To Use?
 first pip this module in cmd or terminal:
 ``` pip install menu_setter ```
+# How To Dev?
+...
