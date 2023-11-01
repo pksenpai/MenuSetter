@@ -2,7 +2,7 @@
  "act": null,
  "sub": [
 		{"title": "Login",
-		 "act": "login",
+		 "act": "show_name",
          "sub": [
 				{"title": "Edit Profile",
 				 "act": null,
