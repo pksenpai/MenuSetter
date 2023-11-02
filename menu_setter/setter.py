@@ -102,7 +102,7 @@ class MenuSet:
             for key, value in self.menu_instance.items():
                 if key == 'title':
                     self.header = value # save header value
-                    self.show_header() # When get title key show title value as header --> >Main Menu<
+                    self.show_header() # When get title key display title value as header --> >Main Menu<
                 
                 elif key == 'act':
                     if value:
@@ -119,7 +119,7 @@ class MenuSet:
     """\____________________________DESIGNER METHODS____________________________/"""
 
     def show_header(self):
-        """ <Show Menu Header> """
+        """ <Display Menu Header> """
         print('__________________')
         print(f'>{self.header}<')
     
