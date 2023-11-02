@@ -61,7 +61,6 @@ class MenuSet:
     def option_act(self):
         print('__________________')
         self.cmd = int(input('cmd?>>> ')) # CHOOSE OPTION FROM MENU
-        return self.cmd
 
     def option_print(self):
         cache_data = {}
@@ -82,33 +81,41 @@ class MenuSet:
         print(f'{self.space}|-> {num+2}-Exit')
 
         """ <Command Input Func> """
-        num_option = self.option_act()
-
+        self.option_act()
+        
+        """ <Fast EXIT> """
+        if self.cmd == num+2:
+            exit()
+            
         """ <Go On option that user choosed> """
-        self.menu_instance = cache_data.get(num_option)
+        self.menu_instance = cache_data.get(self.cmd)
         self.menu_print()
+        print('im in last of line in option_print')
 
 
     def menu_print(self):
         self.menu_instance: dict
-
-        for key, value in self.menu_instance.items():
-            if key == 'title': # --> v1 = 'Login' v2 = 'login' v3 = sub...
-                """ <Show Menu Header> """
-                self.header = value # save header value
-                print('__________________')
-                print(f'>{self.header}<')
-            
-            elif key == 'act':
-                if value: # change from isinstance(value, str)
-                    self.action = value
-                    return self.action
-            else:
-                """ set UI space """
-                self.menu_UI()
-                """ <Show Menu Option> """
-                self.value = value
-                self.option_print()
+        print('im in menu_print func')
+        while True:
+            for key, value in self.menu_instance.items():
+                if key == 'title': # --> v1 = 'Login' v2 = 'login' v3 = sub...
+                    """ <Show Menu Header> """
+                    self.header = value # save header value
+                    print('__________________')
+                    print(f'>{self.header}<')
+                
+                elif key == 'act':
+                    if value: # change from isinstance(value, str)
+                        self.action = value
+                        print(value)
+                        yield self.action
+                        # print(self.header)
+                else:
+                    """ set UI space """
+                    self.menu_UI()
+                    """ <Show Menu Option> """
+                    self.value = value
+                    self.option_print()
 
     def menu_UI(self):
         """ <UI Setting> """
@@ -116,27 +123,21 @@ class MenuSet:
         self.space = ' ' * ((header_size+2) // 2)
 
 
-class MenuGet(MenuSet):
-    def __init__(self, menu_instance, header, space) -> None:
-        super().__init__(menu_instance, header, space)
-    
-    def menu_print(self):
-        super().menu_print()
-        
-    def open_data(self):
-        file_path = path.join('config', 'input.json') # data file address
-
-        with open(file_path) as data_menu_json:
-            self.menu_instance = load(data_menu_json)
-        print('___________________________')
-        print('data extracted successfuly!')
-        self.menu_print()
-        return self.action
-
-
 def call_menu():
-    start_loop = MenuGet(None, 'Main Menu', '\t')
-    action = start_loop.open_data()
-    return action
+    file_path = path.join('config', 'input.json') # data file address
 
-print(call_menu())
+    with open(file_path) as data_menu_json:
+        data = load(data_menu_json)
+    print('___________________________')
+    print('data extracted successfuly!')
+
+    menu_obj = MenuSet(data, 'Main Menu', '\t')
+    for act in menu_obj.menu_print():
+        yield act
+
+
+#********************************#
+# """ <for TEST setter MODULE> """
+# for action in call_menu():
+#     print(action)
+#********************************#

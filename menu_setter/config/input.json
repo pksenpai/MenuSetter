@@ -1,8 +1,8 @@
 {"title": "main menu",
  "act": null,
  "sub": [
-		{"title": "Login",
-		 "act": null,
+		{"title": "MAMAN",
+		 "act": "login",
          "sub": [
 				{"title": "Edit Profile",
 				 "act": null,

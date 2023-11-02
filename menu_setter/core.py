@@ -14,9 +14,20 @@ class MainMenu:
         self.obj = None
     
     def method_caller(self):
-        self.method = exit() if call_menu() == "exit" else call_menu() # call action from setter module if dont return exit command
-        if self.method == "back":
-            sys.exit() # test
+        for act in call_menu():
+            if act == "exit":
+                exit()
+            elif act == "back":
+                sys.exit() # test
+            else:
+                self.args = input('what is your argumants method?>>> ')
+                self.method = act
+                yield self.method, self.args
+                
+                      
+        # self.method = exit() if call_menu() == "exit" else call_menu() # call action from setter module if dont return exit command
+        # if self.method == "back":
+        #     sys.exit() # test
             
         self.args = input('what is your argumants method?>>> ')
         return self.method, self.args

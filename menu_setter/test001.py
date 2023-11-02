@@ -17,13 +17,25 @@ class test:
                 return "Password is correct"
             print('password is incorrect')
             
-    def show_name(self):
-        if self.flag == True:
-            print(f"_____________________________________________________\n"
-                f"My fullname is {self.f_name} {self.l_name}\n" 
-                f"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n"
-                f"My nickname is {self.nickname}\n"
-                f"_____________________________________________________")
-            return True
+    def login(self):
+        user = input('username: ')
+        passw = input('password: ')
+        if passw == '123':
+            if self.flag == True:
+                print(f"_____________________________________________________\n"
+                    f"login success!!!"
+                    f"Welcome :D"
+                    f"_____________________________________________________")
+                return True
         print("--you need to sign up first!!!")
-        
+
+
+# def printt():
+#     for i in range(5):
+#         input()
+#         yield i
+
+
+
+# for j in printt():
+#     print(j)
