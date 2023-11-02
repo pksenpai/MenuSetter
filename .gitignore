@@ -1,7 +1,8 @@
-# Byte-compiled / optimized / DLL files:
+# Byte-compiled / optimized / DLL files /pypi config:
 __pycache__
 *.py[cod]
 *$py.class
+setup.py
 
 # Git stuff:
 .gitattributes
