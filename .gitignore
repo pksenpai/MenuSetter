@@ -8,5 +8,7 @@ setup.py
 .gitattributes
 
 # pending files:
-/modules
-/tests
+menu_setter/modules
+menu_setter/tests
+menu_setter/h\ map.txt
+menu_setter/test001.py
