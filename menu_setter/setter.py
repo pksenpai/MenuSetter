@@ -105,10 +105,15 @@ class MenuSet:
                     return self.action
             else:
                 """ set UI space """
-                MenuGet.menu_UI
+                self.menu_UI()
                 """ <Show Menu Option> """
                 self.value = value
                 self.option_print()
+
+    def menu_UI(self):
+        """ <UI Setting> """
+        header_size = len(self.header)
+        self.space = ' ' * ((header_size+2) // 2)
 
 
 class MenuGet(MenuSet):
@@ -123,14 +128,11 @@ class MenuGet(MenuSet):
 
         with open(file_path) as data_menu_json:
             self.menu_instance = load(data_menu_json)
+        print('___________________________')
         print('data extracted successfuly!')
         self.menu_print()
         return self.action
 
-    def menu_UI(self):
-        """ <UI Setting> """
-        header_size = len(self.header)
-        self.space = ' ' * ((header_size+2) // 2)
 
 def call_menu():
     start_loop = MenuGet(None, 'Main Menu', '\t')

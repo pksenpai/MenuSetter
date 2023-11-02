@@ -1,4 +1,5 @@
 from setter import call_menu
+import sys
 import importlib
 import test001
 
@@ -15,7 +16,8 @@ class MainMenu:
     def method_caller(self):
         self.method = exit() if call_menu() == "exit" else call_menu() # call action from setter module if dont return exit command
         if self.method == "back":
-            pass # go back
+            sys.exit() # test
+            
         self.args = input('what is your argumants method?>>> ')
         return self.method, self.args
 
