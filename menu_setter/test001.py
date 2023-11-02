@@ -22,10 +22,10 @@ class test:
         passw = input('password: ')
         if passw == '123':
             if self.flag == True:
-                print(f"_____________________________________________________\n"
-                    f"login success!!!"
+                print(
+                    f"login success!!!\n"
                     f"Welcome :D"
-                    f"_____________________________________________________")
+                )
                 return True
         print("--you need to sign up first!!!")
 

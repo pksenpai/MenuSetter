@@ -65,7 +65,6 @@ class MainMenu:
         else:
             syntax = '{0}.{1}()'.format(self.module, self.className) # obj = ModuleName.ClassName()
         
-        print(syntax)
         print("__________________________________")
         self.obj = eval(syntax)
         

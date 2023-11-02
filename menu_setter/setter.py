@@ -57,10 +57,13 @@ class MenuSet:
         self.action = None
         self.cmd = None
         
-
+    """\____________________________INPUT METHODS____________________________/"""
+    
     def option_act(self):
         print('__________________')
         self.cmd = int(input('cmd?>>> ')) # CHOOSE OPTION FROM MENU
+
+    """\____________________________BODY METHODS____________________________/"""
 
     def option_print(self):
         cache_data = {}
@@ -90,26 +93,22 @@ class MenuSet:
         """ <Go On option that user choosed> """
         self.menu_instance = cache_data.get(self.cmd)
         self.menu_print()
-        print('im in last of line in option_print')
 
 
     def menu_print(self):
         self.menu_instance: dict
-        print('im in menu_print func')
+        
         while True:
             for key, value in self.menu_instance.items():
-                if key == 'title': # --> v1 = 'Login' v2 = 'login' v3 = sub...
-                    """ <Show Menu Header> """
+                if key == 'title':
                     self.header = value # save header value
-                    print('__________________')
-                    print(f'>{self.header}<')
+                    self.show_header() # When get title key show title value as header --> >Main Menu<
                 
                 elif key == 'act':
-                    if value: # change from isinstance(value, str)
-                        self.action = value
-                        print(value)
+                    if value:
+                        self.action = value # save action value
                         yield self.action
-                        # print(self.header)
+                        self.show_header()
                 else:
                     """ set UI space """
                     self.menu_UI()
@@ -117,13 +116,23 @@ class MenuSet:
                     self.value = value
                     self.option_print()
 
+    """\____________________________DESIGNER METHODS____________________________/"""
+
+    def show_header(self):
+        """ <Show Menu Header> """
+        print('__________________')
+        print(f'>{self.header}<')
+    
     def menu_UI(self):
         """ <UI Setting> """
         header_size = len(self.header)
         self.space = ' ' * ((header_size+2) // 2)
 
 
-def call_menu():
+#=======================================================================================#
+###\__________________________________CONNECTOR_____________________________________/###
+
+def call_menu():# <<<| CONNECT SETTER TO CORE |
     file_path = path.join('config', 'input.json') # data file address
 
     with open(file_path) as data_menu_json:
@@ -135,6 +144,8 @@ def call_menu():
     for act in menu_obj.menu_print():
         yield act
 
+#=======================================================================================#
+###\____________________________________TESTER______________________________________/###
 
 #********************************#
 # """ <for TEST setter MODULE> """
