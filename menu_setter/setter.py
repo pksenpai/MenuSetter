@@ -115,13 +115,16 @@ class MenuGet(MenuSet):
     def __init__(self, menu_instance, header, space) -> None:
         super().__init__(menu_instance, header, space)
     
+    def menu_print(self):
+        super().menu_print()
+        
     def open_data(self):
         file_path = path.join('config', 'input.json') # data file address
 
         with open(file_path) as data_menu_json:
             self.menu_instance = load(data_menu_json)
         print('data extracted successfuly!')
-        MenuSet.menu_print()
+        self.menu_print()
         return self.action
 
     def menu_UI(self):
