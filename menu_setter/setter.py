@@ -48,7 +48,7 @@ from json import load
 from os import path
 
 
-class menu_center:
+class MenuSet:
     def __init__(self, menu_instance, header, space) -> None:
         self.menu_instance = menu_instance
         self.header = header
@@ -60,11 +60,11 @@ class menu_center:
 
     def option_act(self):
         print('__________________')
-        self.cmd = int(input('cmd?>>> '))
+        self.cmd = int(input('cmd?>>> ')) # CHOOSE OPTION FROM MENU
         return self.cmd
 
     def option_print(self):
-        cash_data = {}
+        cache_data = {}
         for num, option in enumerate(self.value, start=1): # type: ignore
             """ <Separate title & sub:ACT|Sub_Option> """
             option : dict
@@ -74,16 +74,18 @@ class menu_center:
             print(f'{self.space}|-> {num}-{title}')
             
             """ <Set value option with index for easy act> """
-            cash_data.setdefault(num, option) 
+            cache_data.setdefault(num, option) 
 
+        cache_data.setdefault(num+1, {"title": "Back", "act": "back", "sub": None})
         print(f'{self.space}|-> {num+1}-Back') 
-        print(f'{self.space}|-> {num+2}-Exit') 
+        cache_data.setdefault(num+2, {"title": "Exit", "act": "exit", "sub": None})
+        print(f'{self.space}|-> {num+2}-Exit')
 
         """ <Command Input Func> """
         num_option = self.option_act()
 
         """ <Go On option that user choosed> """
-        self.menu_instance = cash_data.get(num_option)
+        self.menu_instance = cache_data.get(num_option)
         self.menu_print()
 
 
@@ -98,23 +100,20 @@ class menu_center:
                 print(f'>{self.header}<')
             
             elif key == 'act':
-                if isinstance(value, str):
+                if value: # change from isinstance(value, str)
                     self.action = value
                     return self.action
             else:
                 """ set UI space """
-                menu_shape.menu_UI
+                MenuGet.menu_UI
                 """ <Show Menu Option> """
                 self.value = value
                 self.option_print()
 
 
-class menu_shape(menu_center):
+class MenuGet(MenuSet):
     def __init__(self, menu_instance, header, space) -> None:
         super().__init__(menu_instance, header, space)
-
-    def menu_print(self):
-        return super().menu_print()
     
     def open_data(self):
         file_path = path.join('config', 'input.json') # data file address
@@ -122,7 +121,7 @@ class menu_shape(menu_center):
         with open(file_path) as data_menu_json:
             self.menu_instance = load(data_menu_json)
         print('data extracted successfuly!')
-        self.menu_print()
+        MenuSet.menu_print()
         return self.action
 
     def menu_UI(self):
@@ -131,7 +130,7 @@ class menu_shape(menu_center):
         self.space = ' ' * ((header_size+2) // 2)
 
 def call_menu():
-    start_loop = menu_shape(None, 'Main Menu', '\t')
+    start_loop = MenuGet(None, 'Main Menu', '\t')
     action = start_loop.open_data()
     return action
 

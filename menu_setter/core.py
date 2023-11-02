@@ -1,5 +1,4 @@
 from setter import call_menu
-from ast import literal_eval
 import importlib
 import test001
 
@@ -14,7 +13,9 @@ class MainMenu:
         self.obj = None
     
     def method_caller(self):
-        self.method = call_menu() # call action from setter module
+        self.method = exit() if call_menu() == "exit" else call_menu() # call action from setter module if dont return exit command
+        if self.method == "back":
+            pass # go back
         self.args = input('what is your argumants method?>>> ')
         return self.method, self.args
 
