@@ -35,6 +35,6 @@ def connect(core):
 
         
 """ TEST CALL"""
-# 1-module, 2-args, 3-className, 4-attribute
-core_obj = Core('test001', (':D', 21), 'test', ('Parsa', 'Ahmadian', 'PKPY', 'pk', '123'))
+# 1-attribute, 2-argument, 3-module, 4-className
+core_obj = Core(('Parsa', 'Ahmadian', 'PKPY', 'pk', '123'), (':D', 21), 'test001', 'test')
 connect(core_obj)

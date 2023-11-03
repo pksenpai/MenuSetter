@@ -60,7 +60,7 @@ class MenuSet:
     """\____________________________INPUT METHODS____________________________/"""
     
     def option_act(self):
-        print('__________________')
+        print('__________________\n')
         self.cmd = int(input('cmd?>>> ')) # CHOOSE OPTION FROM MENU
 
     """\____________________________BODY METHODS____________________________/"""

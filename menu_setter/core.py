@@ -1,9 +1,7 @@
 """\__________________________IMPORT MODULES__________________________/"""
 from setter import call_menu
 from typing import Tuple ##################### %%%%%%
-import sys
-import importlib #################################
-import test001 
+import importlib # import test001 
 from ast import literal_eval
 
 
@@ -20,12 +18,11 @@ def rm_parenthese(attribute):
 class Core:
     TNT = tuple or non-tuple
     
-    def __init__(self, module: str, arg: TNT, className: str, attr: TNT):
-        # self.attribute = rm_parenthese(attr) if isinstance(attr, tuple) else attr # convert tuple to str
-        self.module = module
+    def __init__(self, attr: TNT, arg: TNT, module: str, className: str):
+        self.attribute = rm_parenthese(attr) if isinstance(attr, tuple) else attr # convert tuple to str
         self.argument = rm_parenthese(arg) if isinstance(arg, tuple) else arg # convert tuple to str
+        self.module = importlib.import_module(module)
         self.className = className
-        self.attribute = attr
         self.obj = None
     
     def method_caller(self):
@@ -40,14 +37,28 @@ class Core:
         module_caller & class_caller method then Create an object 
         """
         
-        if self.attribute:
-            syntax = '{0}.{1}{2}'.format(self.module, self.className, eval(str(self.attribute))) # obj = ModuleName.ClassName(AttributesName)
+        core_object = getattr(self.module, self.className) # obj = ModuleName.ClassName()|create an object
+        
+        if self.attribute: # if attr exist|
+            self.obj = core_object(*self.attribute) # obj = ModuleName.ClassName(AttributesName)
         else:
-            syntax = '{0}.{1}()'.format(self.module, self.className) # obj = ModuleName.ClassName()
+            self.obj = core_object() # obj = ModuleName.ClassName()
+            
+        tester = "Login"
+        print(f" _______________/{tester}\_______________",
+               "\n/                " + (" "*len(tester)) + "                \\")
         
-        print("__________________________________")
-        self.obj = eval(syntax)
-        
-        # self.obj = literal_eval(syntax) # have error why?!!
         return self.obj
-    
+
+        #===============================================================================#
+        """ stored temporary previous code's """
+        # if self.attribute: # obj = ModuleName.ClassName(AttributesName) <-- attr exist|
+            # syntax = '{0}.{1}{2}'.format(self.module, self.className, self.attribute) 
+        # else:
+            # syntax = '{0}.{1}()'.format(self.module, self.className)
+
+        # self.obj = eval(syntax)
+        # self.obj = literal_eval(syntax) # have error why?!! %%%QUESTION%%%
+        #===============================================================================#
+
+
