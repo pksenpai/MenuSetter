@@ -1,15 +1,13 @@
-from core import MainMenu
+from core import Core
 
 
 def connect(core):
     """ Call Action from Main Menu """
-    for methodName, args in core.method_caller():
+    for methodName in core.method_caller():
         try:
-            # method_name, args = core.method_caller() # 4Example: method_name, args = print, "Hello World!"
-            # print(method_name)
-            # if method_name == 'Back' or args == 'Back':
-            #     connect()
-
+            if methodName == 'back': # its back to first of menu page %%%BUG%%%
+                connect(core)
+            args = None # just dont forget args
             """ Create an object from class """
             obj = core.obj_caller()
             method = getattr(obj, methodName)
@@ -25,12 +23,10 @@ def connect(core):
         except ModuleNotFoundError as error:
             print(error)
 
-    """ Loop Menu """
-    connect(core)
 
 
         
 """ TEST CALL"""
-# object = CoreClassName(moduleName, methodName, args, className, attribute)
-core_obj = MainMenu('test001', None, None, 'test', None)
+# 1-module, 2-args, 3-className, 4-attribute
+core_obj = Core('test001', None, 'test', None)
 connect(core_obj)

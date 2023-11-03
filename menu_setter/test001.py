@@ -17,14 +17,14 @@ class test:
                 return "Password is correct"
             print('password is incorrect')
             
-    def login(self):
+    def login(self, name='PKPY'):
         user = input('username: ')
         passw = input('password: ')
         if passw == '123':
             if self.flag == True:
                 print(
                     f"login success!!!\n"
-                    f"Welcome :D"
+                    f"Welcome {name}:D"
                 )
                 return True
         print("--you need to sign up first!!!")
@@ -39,3 +39,7 @@ class test:
 
 # for j in printt():
 #     print(j)
+# def test(*args):
+#     print(str(args))
+
+# test(1)

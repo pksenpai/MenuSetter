@@ -1,36 +1,31 @@
 from setter import call_menu
+from typing import Tuple ##################### %%%%%%
 import sys
-import importlib
-import test001
+import importlib #################################
+import test001 #################################
 
+def rm_parenthese(attribute):
+    """ Remove parentheses for return pure data """
+    return str(attribute).replace('(', '').replace(')', '')
 
-class MainMenu:
-    def __init__(self, module, method, args, className, attribute):
-        self.attribute = attribute
+class Core:
+    TNT = tuple or non-tuple
+    
+    def __init__(self, module: str, args: TNT, className: str, attr: TNT):
+        self.attribute = rm_parenthese(attr) if isinstance(attr, tuple) else attr
         self.className = className
         self.module = module
-        self.method = method
-        self.args = args
+        self.args = rm_parenthese(args) if isinstance(args, tuple) else args
         self.obj = None
     
     def method_caller(self):
         for act in call_menu():
             if act == "exit":
                 exit()
-            elif act == "back":
-                sys.exit() # test
+            # elif act == "back":
+            #     sys.exit() # test
             else:
-                self.args = input('what is your argumants method?>>> ')
-                self.method = act
-                yield self.method, self.args
-                
-                      
-        # self.method = exit() if call_menu() == "exit" else call_menu() # call action from setter module if dont return exit command
-        # if self.method == "back":
-        #     sys.exit() # test
-            
-        self.args = input('what is your argumants method?>>> ')
-        return self.method, self.args
+                yield act
 
     """
     ---------------------------------------------------------------------------
@@ -39,7 +34,6 @@ class MainMenu:
     def module_caller(self):
         module_name = input('what is module name?>>> ')
         self.module = module_name
-        # self.module = importlib.import_module(module_name) #BUGGGGGGGGGGGGGGGGGGGGGGGGG
 
     def class_caller(self):
         """ input class name """
@@ -57,8 +51,9 @@ class MainMenu:
         Call module, class and class attribute's from
         module_caller & class_caller method then Create an object 
         """
-        MainMenu.module_caller(self)
-        MainMenu.class_caller(self)
+        Core.module_caller(self)
+        Core.class_caller(self)
+        
         
         if self.attribute:
             syntax = '{0}.{1}({2})'.format(self.module, self.className, self.attribute) # obj = ModuleName.ClassName(AttributesName)
@@ -69,6 +64,5 @@ class MainMenu:
         self.obj = eval(syntax)
         
         # self.obj = literal_eval(syntax) # have error why?!
-        # self.obj.show_name() # from test001 module test001.test().show_name()
         return self.obj
     
