@@ -22,38 +22,13 @@ class Core:
         for act in call_menu():
             if act == "exit":
                 exit()
-            # elif act == "back":
-            #     sys.exit() # test
-            else:
-                yield act
-
-    """
-    ---------------------------------------------------------------------------
-    """
-
-    def module_caller(self):
-        module_name = input('what is module name?>>> ')
-        self.module = module_name
-
-    def class_caller(self):
-        """ input class name """
-        self.className = input('class name?>>> ')
-        self.attribute = input('class attributes?>>> ')
-        # if self.className == 'Back' or self.attribute == 'Back':
-        #     connector.connect()
-
-    """
-    --------------------------------------------------------------------------
-    """
+            yield act # if not exit return action
 
     def obj_caller(self) -> object:
         """ 
         Call module, class and class attribute's from
         module_caller & class_caller method then Create an object 
         """
-        Core.module_caller(self)
-        Core.class_caller(self)
-        
         
         if self.attribute:
             syntax = '{0}.{1}({2})'.format(self.module, self.className, self.attribute) # obj = ModuleName.ClassName(AttributesName)
