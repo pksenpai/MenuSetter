@@ -46,6 +46,7 @@ class test:
             print("WARNING: --your password is wrong!!!")
             return 'menu_setter.core.back'
         
-        return 'menu_setter.core.setTimer'
+        return 'menu_setter.core.setTimer', 2
+        # return 'menu_setter.core.setTimer' # this command missing 1 required positional argument(delay_time)
         # return 'menu_setter.core.stopMove'
         

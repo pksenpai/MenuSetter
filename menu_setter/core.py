@@ -1,7 +1,7 @@
 """\__________________________IMPORT MODULES__________________________/"""
 from setter import call_menu
 from typing import Tuple ##################### %%%%%%
-import importlib # import test001 
+import importlib 
 from ast import literal_eval
 
 
@@ -10,8 +10,10 @@ from ast import literal_eval
 def rm_parenthese(attribute):
     """ Convert tupel to str & remove parentheses """
     myString = str(attribute).replace('(', '').replace(')', '')
-    return eval(myString) # convert str to pure object
-
+    
+    """ convert str to pure object """
+    return literal_eval(myString) # more SAFE <-- recommended!!!
+    # return eval(myString) # more FAST
 
 """\__________________________BODY CLASS__________________________/"""
 
@@ -21,7 +23,7 @@ class Core:
     def __init__(self, attr: TNT, arg: TNT, module: str, className: str):
         self.attribute = rm_parenthese(attr) if isinstance(attr, tuple) else attr # convert tuple to str
         self.argument = rm_parenthese(arg) if isinstance(arg, tuple) else arg # convert tuple to str
-        self.module = importlib.import_module(module)
+        self.module = importlib.import_module(module) # import ModuleName 
         self.className = className
         self.obj = None
     

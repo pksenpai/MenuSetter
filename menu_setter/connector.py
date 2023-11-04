@@ -18,8 +18,10 @@ def message_back(msg, core): # message back from outer codes
         input()
     elif 'menu_setter.core.setTimer' in msg:
         ERROR = ERROR_missed_message_argument.format(1, msg, "delay_time")
-        raise TypeError(ERROR) if len(msg) != 2 else msg
-        sleep(msg[1])
+        if len(msg) == 2:
+            sleep(msg[1])
+        else:
+            raise TypeError(ERROR)
 
 def connect(core):
     """ Call Action from Main Menu """
