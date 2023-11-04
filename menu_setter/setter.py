@@ -60,8 +60,12 @@ class MenuSet:
     """\____________________________INPUT METHODS____________________________/"""
     
     def option_act(self):
-        print('__________________\n')
-        self.cmd = int(input('cmd?>>> ')) # CHOOSE OPTION FROM MENU
+        try:
+            print(' ______________________________')
+            print('/')
+            self.cmd = int(input('\_Select the option number>>> ')) # CHOOSE OPTION FROM MENU
+        except ValueError:
+            print("ERROR: Your request is incorrect, please enter a number! :(")
 
     """\____________________________BODY METHODS____________________________/"""
 
@@ -82,6 +86,7 @@ class MenuSet:
         print(f'{self.space}|-> {num+1}-Back') 
         cache_data.setdefault(num+2, {"title": "Exit", "act": "exit", "sub": None})
         print(f'{self.space}|-> {num+2}-Exit')
+        print('@_________________')
 
         """ <Command Input Func> """
         self.option_act()
@@ -120,7 +125,7 @@ class MenuSet:
 
     def show_header(self):
         """ <Display Menu Header> """
-        print('__________________')
+        print('@_________________')
         print(f'>{self.header}<')
     
     def menu_UI(self):
@@ -137,8 +142,8 @@ def call_menu():# <<<| CONNECT SETTER TO CORE |
 
     with open(file_path) as data_menu_json:
         data = load(data_menu_json)
-    print('___________________________')
-    print('data extracted successfuly!')
+    print('\n>===============================================@')
+    # print('data extracted successfuly!')
 
     menu_obj = MenuSet(data, 'Main Menu', '\t')
     for act in menu_obj.menu_print():

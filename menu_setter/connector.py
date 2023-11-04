@@ -1,10 +1,25 @@
 from core import Core
+from time import sleep
 
 
-def message_back(msg, core):
-    """ message back from outer codes """ 
+def message_back(msg, core): # message back from outer codes
+    
+    """\__________________________ERRORS__________________________/"""
+    
+    ERROR_missed_message_argument = (
+        "ERROR: missing {} required positional argument --> ('{}', <!MISSED HERE!>={})"
+        )
+    
+    """\__________________________MESSAGES__________________________/"""
+    
     if msg == 'menu_setter.core.back':
         connect(core)
+    elif msg == 'menu_setter.core.stopMove':
+        input()
+    elif 'menu_setter.core.setTimer' in msg:
+        ERROR = ERROR_missed_message_argument.format(1, msg, "delay_time")
+        raise TypeError(ERROR) if len(msg) != 2 else msg
+        sleep(msg[1])
 
 def connect(core):
     """ Call Action from Main Menu """
@@ -26,6 +41,8 @@ def connect(core):
             if message: # if message back from outer code's response the defined request's
                 message_back(message, core)
             
+            print("\n>===============================================@")
+                        
         except NameError as error:
             print(error)
         except ModuleNotFoundError as error:

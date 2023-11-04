@@ -45,11 +45,7 @@ class test:
         else:
             print("WARNING: --your password is wrong!!!")
             return 'menu_setter.core.back'
-            
         
-# obj = test()
-
-# x = "'parsa',1"
-# pure = eval(x)
-# print(type(*pure))
-# obj.login(*pure)
+        return 'menu_setter.core.setTimer'
+        # return 'menu_setter.core.stopMove'
+        
