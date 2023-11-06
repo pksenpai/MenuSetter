@@ -1,4 +1,4 @@
-from modules import connector
+from menu_setter import connector
 
 connector.connect()
 # 'Parsa', 'Ahmadian', 'PKPY', 'pk', '123'  --> str(list).replace('[', '').replace(']', '')

@@ -1,0 +1,47 @@
+{"title": "main menu",
+ "act": null,
+ "sub": [
+		{"title": "Login",
+		 "act": {
+			"M": "test001",
+			"F": "login",
+			"args": [":D", 22],
+			"C": "test",
+			"attr": ["Parsa", "Ahmadian", "PKPY", "pk", "123"]
+		 },
+         "sub": [
+				{"title": "Edit Profile",
+				 "act": null,
+                 "sub": [
+						{"title": "Change Username",
+					 	 "act": "change_username",  
+                         "sub": null},
+	
+						{"title": "Change Password",
+					 	 "act": "change_password",
+                         "sub": null}     
+					]},
+
+				{"title": "Contacts Panel",
+				 "act": null,
+                 "sub": [
+                        {"title": "Add New Contact",
+				         "act": "add_contact",
+                         "sub": null}
+                        ]}     
+				]},
+
+		{"title": "SignUp",
+		 "act": {
+			"M": "test001",
+			"F": "signup",
+			"C": "test",
+			"attr": ["Parsa", "Ahmadian", "PKPY", "pk", "123"]
+		 },
+		 "sub": [
+				{"title": "Show Name",
+			 	 "act": null,
+         	 	 "sub": null}
+		 		]}
+		]
+}
