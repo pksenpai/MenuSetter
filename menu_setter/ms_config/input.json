@@ -2,7 +2,13 @@
  "act": null,
  "sub": [
 		{"title": "Login",
-		 "act": "login",
+		 "act": {
+			"M": "test001",
+			"F": "login",
+			"args": [":D", 22],
+			"C": "test",
+			"attr": ["Parsa", "Ahmadian", "PKPY", "pk", "123"]
+		 },
          "sub": [
 				{"title": "Edit Profile",
 				 "act": null,
@@ -26,10 +32,15 @@
 				]},
 
 		{"title": "SignUp",
-		 "act": "signup",
+		 "act": {
+			"M": "test001",
+			"F": "signup",
+			"C": "test",
+			"attr": ["Parsa", "Ahmadian", "PKPY", "pk", "123"]
+		 },
 		 "sub": [
 				{"title": "Show Name",
-			 	 "act": "show_name",
+			 	 "act": null,
          	 	 "sub": null}
 		 		]}
 		]

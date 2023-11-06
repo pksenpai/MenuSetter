@@ -1,5 +1,6 @@
 from sys import argv
-import core
+import modules
+
 
 class test:
     def __init__(self, f_name, l_name, nickName, username, password):
@@ -11,13 +12,15 @@ class test:
         self.__password = password
         
     def signup(self):
-        cmd_password: str
-        while self.flag == False or cmd_password.lower() != "back":
-            cmd_password = argv
-            if cmd_password == 123:
-                self.flag = True
-                return "Password is correct"
-            print('password is incorrect')
+        if self.flag == True:
+            print("Actully you are in your account!!! XO")
+            return 'menu_setter.core.back'
+        
+        else:
+            while self.flag == False:
+                cmd_username = input('enter an username>>> ')
+                cmd_password = input('enter a password>>> ')
+            print("Wellcome :D!!!\nsignup successfully!!!")
             
     def login(self, emoji: str, age: int):
         """ <check user & password for login> """
