@@ -54,6 +54,18 @@ def json_data():
                             {"title": "Show Name",
                                 "act": None,
                                 "sub": None}
+                            ]},
+                    
+                    {"title": "documents",
+                    "act": {
+                        "print": "https://github.com/pksenpai/MenuSetter"
+                    },
+                    "sub": [
+                            {"title": "author",
+                                "act": {
+                                    "print": "Parsa Ahmadian(PKPY)"
+                                },
+                                "sub": None}
                             ]}
                     ]
             }
@@ -106,6 +118,7 @@ def generate_json_file(PATH, FILE, EXT):
     filePath = '{}/{}.{}'.format(PATH, FILE, EXT)
     if not path.isfile(filePath):
         menu = json_data()
+        menu_name='Main Menu'
         if args.name: # give a custom name to menu name as menu header
             new_name = args.name # new name
             menu_name = new_name
@@ -115,7 +128,8 @@ def generate_json_file(PATH, FILE, EXT):
         if menu:
             with open(filePath, 'w+') as json_file: # create file with site and doc link near other ms_config files
                 json_file.write(json_pf)
-        return f'{FILE}.{EXT} file added!:D', new_name
+                
+        return f'{FILE}.{EXT} file added!:D', menu_name
     else:
         return f'{FILE}.{EXT} already EXIST!:o', None
 
@@ -131,7 +145,7 @@ def read_json(): # read menu.json
 """\________________________________BODY________________________________/"""
 
 ###\____________FUNCS____________/###
-def init_menuSetter(menu_name='Main Menu'): # default name ==> main menu    
+def init_menuSetter(): # default name ==> main menu    
     PATH, FILE, EXT = read_extra_opt()
 
     if args.json:

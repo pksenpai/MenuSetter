@@ -43,16 +43,17 @@ def connect(moduleName=None, func=None, args=None, className=None, attr=None):
             
             """ Create an object from class """
             obj = core.obj_caller()
-            method = getattr(obj, methodName)
-            
-            """ The method may have no arguments """
-            if not args:
-                message = method()
-            else:
-                message = method(*args)
+            if obj:
+                method = getattr(obj, methodName)
+                
+                """ The method may have no arguments """
+                if not args:
+                    message = method()
+                else:
+                    message = method(*args)
 
-            if message: # if message back from outer code's response the defined request's
-                message_back(message, core)
+                if message: # if message back from outer code's response the defined request's
+                    message_back(message, core)
             
             print("\n>===============================================@")
                         

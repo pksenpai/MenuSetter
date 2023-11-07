@@ -71,6 +71,21 @@
                     "sub": null
                 }
             ]
+        },
+        {
+            "title": "documents",
+            "act": {
+                "print": "https://github.com/pksenpai/MenuSetter"
+            },
+            "sub": [
+                {
+                    "title": "author",
+                    "act": {
+                        "print": "Parsa Ahmadian(PKPY)"
+                    },
+                    "sub": null
+                }
+            ]
         }
     ]
 }

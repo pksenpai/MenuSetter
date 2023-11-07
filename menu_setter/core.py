@@ -36,6 +36,7 @@ class Core:
         self.className = className
         self.attribute = rm_parenthese(attr)
         
+        self.content = None
         self.header = None
         self.obj = None
     
@@ -43,10 +44,13 @@ class Core:
         for act, self.header in call_menu():
             
             if isinstance(act, dict):
+                """\_____________Print_____________/"""
+                self.content = act.get("print")
+                                
                 """\____________Module____________/""" # import ModuleName
                 module = act.get("M")
-                self.module = import_module(module) if not self.module else self.module 
-                
+                self.module = import_module(module) if not self.module and module else self.module 
+
                 """\____________Class____________/"""
                 className = act.get("C")
                 self.className = className if className else self.className
@@ -72,15 +76,18 @@ class Core:
         """ 
         Create an object : obj = ModuleName.ClassName(AttributesName)
         """
-        
-        core_object = getattr(self.module, self.className) # obj = ModuleName.ClassName()
-        
-        if self.attribute: # if attr exist|
-            self.obj = core_object(*self.attribute) # obj = Module.Class(Attributes)
-        else:
-            self.obj = core_object() # obj = Module.Class()
+        if self.module:
+            core_object = getattr(self.module, self.className) # obj = ModuleName.ClassName()
             
-        print(f" _______________/{self.header}\_______________",
-               "\n/                " + (" "*len(self.header)) + "                \\")
+            if self.attribute: # if attr exist|
+                self.obj = core_object(*self.attribute) # obj = Module.Class(Attributes)
+            else:
+                self.obj = core_object() # obj = Module.Class()
+                
+        print(f"\n _______________/{self.header}\_______________",
+            "\n/                " + (" "*len(self.header)) + "                \\")
+        if self.content:
+            print(self.content)
         
-        return self.obj
+            return self.obj
+        return False

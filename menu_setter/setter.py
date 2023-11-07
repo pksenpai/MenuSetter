@@ -52,12 +52,14 @@ exmple:
 """
 """\____________________________IMPORT MODULES____________________________/"""
 from ms_config import data_extractor
-
+import os
 
 """\_________________________________BODY_________________________________/"""
 class MenuSet:
     def __init__(self, menu_instance, header, space) -> None:
         self.menu_instance = menu_instance
+        self.cache_data = None
+        self.last_header = None
         self.header = header
         self.space = space
         self.value = None
@@ -77,23 +79,42 @@ class MenuSet:
     """\____________________________BODY METHODS____________________________/"""
 
     def option_print(self):
-        cache_data = {}
-        for num, option in enumerate(self.value, start=1): # type: ignore
-            """ <Separate title & sub:ACT|Sub_Option> """
-            option : dict
-            title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
+        self.show_header() # menu header --> >Main Menu<
+        
+        if self.value: # if value of {sub: []} is empty go back 
+            self.last_header = self.header
+            self.cache_data = {}
+            for num, option in enumerate(self.value, start=1):
+                """ <Separate title & sub:ACT|Sub_Option> """
+                option : dict
+                title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
+                
+                """ <Show Option's> """
+                print(f'{self.space}|-> {num}-{title}')
+                
+                """ <Set value option with index for easy act> """
+                self.cache_data.setdefault(num, option)
+                
+            """ <Set value option with index for back & exit options> """ 
+            self.cache_data.setdefault(num+1, {"title": "Back", "act": "back", "sub": None})
+            print(f'{self.space}|-> {num+1}-Back') 
+            self.cache_data.setdefault(num+2, {"title": "Exit", "act": "exit", "sub": None})
+            print(f'{self.space}|-> {num+2}-Exit')
             
-            """ <Show Option's> """
-            print(f'{self.space}|-> {num}-{title}')
-            
-            """ <Set value option with index for easy act> """
-            cache_data.setdefault(num, option) 
-
-        cache_data.setdefault(num+1, {"title": "Back", "act": "back", "sub": None})
-        print(f'{self.space}|-> {num+1}-Back') 
-        cache_data.setdefault(num+2, {"title": "Exit", "act": "exit", "sub": None})
-        print(f'{self.space}|-> {num+2}-Exit')
-        print('@_________________')
+        else:
+            for num, option in enumerate(self.cache_data.values(), start=1):
+                # print('=================')
+                # print(option)
+                # print('=================')
+                """ <Separate title & sub:ACT|Sub_Option> """
+                option : dict
+                title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
+                
+                """ <Show Option's> """
+                print(f'{self.space}|-> {num}-{title}')
+        
+        print('@_________________') # menu footer --> @____________...
+        
 
         """ <Command Input Func> """
         self.option_act()
@@ -103,7 +124,7 @@ class MenuSet:
             exit()
             
         """ <Go On option that user choosed> """
-        self.menu_instance = cache_data.get(self.cmd)
+        self.menu_instance = self.cache_data.get(self.cmd)
         self.menu_print()
 
     """\____________________________DIVIDER____________________________/"""
@@ -115,7 +136,6 @@ class MenuSet:
             for key, value in self.menu_instance.items():
                 if key == 'title':
                     self.header = value # save header value
-                    self.show_header() # When get title key display title value as header --> >Main Menu<
                 
                 elif key == 'act':
                     if value:
