@@ -141,7 +141,6 @@ class MenuSet:
                     if value:
                         self.action = value # save action value
                         yield self.action, self.header
-                        self.show_header()
                 else:
                     """ set UI space """
                     self.menu_UI()

@@ -76,6 +76,13 @@ class Core:
         """ 
         Create an object : obj = ModuleName.ClassName(AttributesName)
         """
+        if self.content or self.module:
+            print(f"\n _______________/{self.header}\_______________",
+                "\n/                " + (" "*len(self.header)) + "                \\")
+        
+        if self.content:
+            print(self.content)
+
         if self.module:
             core_object = getattr(self.module, self.className) # obj = ModuleName.ClassName()
             
@@ -84,10 +91,8 @@ class Core:
             else:
                 self.obj = core_object() # obj = Module.Class()
                 
-        print(f"\n _______________/{self.header}\_______________",
-            "\n/                " + (" "*len(self.header)) + "                \\")
-        if self.content:
-            print(self.content)
-        
+                
             return self.obj
-        return False
+        
+        else:
+            return False
