@@ -79,9 +79,9 @@ class MenuSet:
     """\____________________________BODY METHODS____________________________/"""
 
     def option_print(self):
-        self.show_header() # menu header --> >Main Menu<
         
         if self.value: # if value of {sub: []} is empty go back 
+            self.show_header(self.header) # menu header --> >Main Menu<
             self.last_header = self.header
             self.cache_data = {}
             for num, option in enumerate(self.value, start=1):
@@ -103,6 +103,7 @@ class MenuSet:
             
         else:
             for num, option in enumerate(self.cache_data.values(), start=1):
+                self.show_header(self.last_header) # menu header --> >Main Menu<
                 # print('=================')
                 # print(option)
                 # print('=================')
@@ -149,11 +150,11 @@ class MenuSet:
                     self.option_print()
 
     """\____________________________DESIGNER METHODS____________________________/"""
-
-    def show_header(self):
+    @staticmethod
+    def show_header(header):
         """ <Display Menu Header> """
         print('@_________________')
-        print(f'>{self.header}<')
+        print(f'>{header}<')
     
     def menu_UI(self):
         """ <UI Setting> """
