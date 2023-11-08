@@ -70,9 +70,19 @@ class MenuSet:
     
     def option_act(self):
         try:
-            print(' ______________________________')
-            print('/')
-            self.cmd = int(input('\_Select the option number>>> ')) # CHOOSE OPTION FROM MENU
+            flag = False
+            while flag==False:
+                print(' ______________________________')
+                print('/')
+                self.cmd = int(input('\_Select the option number>>> ')) # CHOOSE OPTION FROM MENU
+                if len(self.cache_data) < self.cmd:
+                    print()
+                    print(f'>>> this [{self.cmd}- ] option is NOT EXIST!!! :O')
+                    print()
+                    
+                else:
+                    flag = True
+            flag = None
         except ValueError:
             print("ERROR: Your request is incorrect, please enter a number! :(")
 
