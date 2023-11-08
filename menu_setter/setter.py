@@ -102,8 +102,8 @@ class MenuSet:
             print(f'{self.space}|-> {num+2}-Exit')
             
         else:
+            self.show_header(self.last_header) # menu header --> >Main Menu<
             for num, option in enumerate(self.cache_data.values(), start=1):
-                self.show_header(self.last_header) # menu header --> >Main Menu<
                 # print('=================')
                 # print(option)
                 # print('=================')
@@ -144,7 +144,11 @@ class MenuSet:
                         yield self.action, self.header
                 else:
                     """ set UI space """
-                    self.menu_UI()
+                    if value:
+                        self.menu_UI(self.header)
+                    else:
+                        self.menu_UI(self.last_header)
+                        
                     """ <Show Menu Option> """
                     self.value = value
                     self.option_print()
@@ -156,9 +160,9 @@ class MenuSet:
         print('@_________________')
         print(f'>{header}<')
     
-    def menu_UI(self):
+    def menu_UI(self, header):
         """ <UI Setting> """
-        header_size = len(self.header)
+        header_size = len(header)
         self.space = ' ' * ((header_size+2) // 2)
 
 
