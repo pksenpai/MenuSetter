@@ -1,8 +1,12 @@
-# Byte-compiled / optimized / DLL files /pypi config:
+# Byte-compiled / optimized / DLL files /pypi config &...:
 __pycache__
 *.py[cod]
 *$py.class
 setup.py
+dist
+build
+menu_setter.egg-info/
+menu_setter3.egg-info/
 
 # Git stuff:
 .gitattributes
@@ -12,3 +16,7 @@ menu_setter/modules
 menu_setter/tests
 menu_setter/h\ map.txt
 menu_setter/test001.py
+
+# test projects:
+hospital\ project
+tests

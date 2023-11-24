@@ -1,1 +1,2 @@
-__all__=["commander", "connector"]
+__all__=["connector", "setter"]
+

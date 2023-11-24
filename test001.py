@@ -24,14 +24,14 @@ class test:
     def login(self, emoji: str, age: int):
         """ <check user & password for login> """
         
-        user = input('username: ')
-        input_password = input('password: ')
+        user = input('username: '.ljust(30))
+        input_password = input('password: '.ljust(30))
         
-        print('input:', input_password)
-        print('input:', type(input_password))
+        # print('input:', input_password)
+        # print('input:', type(input_password))
 
-        print('stored:', self.__password)
-        print('stored:', type(self.__password))
+        # print('stored:', self.__password)
+        # print('stored:', type(self.__password))
         
         if user == self.username and input_password == self.__password:
             if self.flag == True:

@@ -1,12 +1,3 @@
-"""\______________________________IMPORT MODULE______________________________/"""
-from setter import call_menu
-from ms_config import data_extractor, extra_opt
-from pprint import pprint
-from json import dumps
-from shutil import copytree
-from os import path
-import argparse
-
 """\______________________________DEFAULT MENU______________________________/"""
 def json_data():
     default_menu={
@@ -72,6 +63,14 @@ def json_data():
 
     return default_menu
 
+"""\______________________________IMPORT MODULE______________________________/"""
+from .setter import call_menu
+from ms_config import data_extractor, extra_opt
+from pprint import pprint
+from json import dumps
+from shutil import copytree
+from os import path
+import argparse
 
 """\______________________________ARGPARSE______________________________/"""
 
@@ -129,9 +128,9 @@ def generate_json_file(PATH, FILE, EXT):
             with open(filePath, 'w+') as json_file: # create file with site and doc link near other ms_config files
                 json_file.write(json_pf)
                 
-        return f'{FILE}.{EXT} file added!:D', menu_name
+        return f'{FILE}.{EXT} file added!:D\nmenu name: {menu_name}'
     else:
-        return f'{FILE}.{EXT} already EXIST!:o', None
+        return f'{FILE}.{EXT} already EXIST!:o'
 
 def read_extra_opt():
     PATH = extra_opt.menu_config_path
@@ -149,8 +148,7 @@ def init_menuSetter(): # default name ==> main menu
     PATH, FILE, EXT = read_extra_opt()
 
     if args.json:
-        msg, menu_name = generate_json_file(PATH, FILE, EXT)
-        print(msg, f'menu name: {menu_name}')
+        result = generate_json_file(PATH, FILE, EXT) 
         
     elif not path.isdir(PATH):
         """ Copy config files to parent_directory """
@@ -161,13 +159,15 @@ def init_menuSetter(): # default name ==> main menu
         copytree(source_dir, new_configFile_name) # copying...
         _, menu_name = generate_json_file(PATH, FILE, EXT)
                 
-        return f'NICE: menu-setter files generated successfuly as >{menu_name}< :D'
+        result = f'NICE: menu-setter files generated successfuly as >{menu_name}< :D'
         
     else:
         error=(f"{PATH} directory is already EXIST!:o" 
                f"\nif you want to init a json file for menu input"
                f"\nuse '-j' after 'ms-init' :3")
-        return error
+        result = error
+    
+    return result
     
 def show_menuSetter():
     # display menu with command
