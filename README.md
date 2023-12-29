@@ -18,6 +18,7 @@ python3 -m menu_setter ms-init
 ```
 > [!TIP]
 > if `ms_config` directory created but json file does not exist use `-j` after command:
+> <br>
 > ` python3 -m menu_setter ms-init -j `
 
 # How To Dev?
