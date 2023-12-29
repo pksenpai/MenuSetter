@@ -1,19 +1,17 @@
 # menu setter 3
-a dynamic menu for easier customization using by json.
+A dynamic menu for easier customization by json.
 <br>
 This module is under development and will become more powerful.
 
 ## How To Use? 🍡
 > you can use this with 4 easy steps
 
-<br>
-
--------------------
+_____________________
 1. ### Installation
 
 <br>
 
-- install with pip package manager in cmd or terminal:
+- [^1](https://pypi.org/project/menu-setter3/): install with pip package manager in cmd or terminal:
 ```
 pip install menu_setter 
 ```
