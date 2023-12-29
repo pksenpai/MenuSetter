@@ -43,7 +43,7 @@ python3 -m menu_setter ms-init
 
 | Commands | Usage | Options | Usage |
 | :--- | :---: | :---: | ---: |
-| ms-init | initialize the ms_config directory for config menu | {-j --json}, [-n --name] |
+| ms-init | initialize the ms_config directory for configuration menu | {-j --json}, [-n --name] |
 | ms-show | xxxxxxxx |        |
 | ms-call | xxxxxxxx | -v --verbose |
 
