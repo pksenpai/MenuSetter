@@ -4,7 +4,7 @@ a dynamic menu for easier customization using by json.
 This module is under development and will become more powerful.
 
 ## How To Use?
-1. Installation
+1. ### Installation
 
 <br>
 
@@ -12,7 +12,9 @@ This module is under development and will become more powerful.
 ```
 pip install menu_setter 
 ```
-  
+
+<br>
+
 2. Initialization
 
 <br>
