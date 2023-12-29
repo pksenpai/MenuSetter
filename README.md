@@ -14,9 +14,8 @@ pip install menu_setter
 <h4>Initialization</h4>
 - init config files with following command:
 <br>
-``` 
-python3 -m menu_setter ms-init
-```
+<sup> python3 -m menu_setter ms-init </sup>
+<br>
 > [!TIP]
 > if `ms_config` directory created but json file does not exist use `-j` after command:
 > <br>
