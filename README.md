@@ -3,9 +3,12 @@ a dynamic menu for easier customization using by json.
 <br>
 This module is under development and will become more powerful.
 
-<details>
+
 <summary><h2>How To Use?</h2><summary>
 <h3>Installation</h3>
+
+<br>
+<details>
 + install with pip package manager in cmd or terminal:
 
 <br>
