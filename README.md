@@ -3,8 +3,8 @@ a dynamic menu for easier customization using by json.
 <br>
 This module is under development and will become more powerful.
 
-<h2>How To Use?</h2>
-<h3>Installation</h3>
+## How To Use?
+### Installation
 
 <br>
 
@@ -16,7 +16,7 @@ This module is under development and will become more powerful.
 pip install menu_setter 
 ```
   
-<h3>Initialization</h3>
+### Initialization
 > init config files with following command:
 
 <br>
@@ -41,5 +41,5 @@ python3 -m menu_setter ms-init
 | git status   | git status     | git status    |
 | git diff     | git diff       | git diff      |
 
-# How To Dev?
+## How To Dev?
 ...
