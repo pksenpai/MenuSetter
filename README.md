@@ -12,7 +12,7 @@ _____________________
 <br>
 
 - install with pip package manager([pypi](https://pypi.org/project/menu-setter3/)) in cmd or terminal:
-```
+```shell
 pip install menu_setter 
 ```
 
@@ -24,7 +24,7 @@ _____________________
 <br>
 
 - init config files with following command:
-```
+```shell
 python3 -m menu_setter ms-init
 ```
 
@@ -34,6 +34,8 @@ python3 -m menu_setter ms-init
 >  if `ms_config` directory is exist but json file does not exist use `-j` option for create a ready-made menu template in Jason format:
 > <br>
 > ```python3 -m menu_setter ms-init -j```
+
+<br>
 
 <b>More Commands & Options</b>
 
