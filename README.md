@@ -37,7 +37,8 @@ python3 -m menu_setter ms-init
 
 <br>
 
-<b>More Commands & Options</b>
+<details>
+<summary><b>More Commands & Options</b></summary>
 
 <br>
 
@@ -47,7 +48,7 @@ python3 -m menu_setter ms-init
 | ms-show | xxxxxxxx |        |
 | ms-call | xxxxxxxx | -v --verbose |
 
-
+</details>
 <br>
 
 ## How To Dev?
