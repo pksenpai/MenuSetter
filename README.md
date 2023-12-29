@@ -12,8 +12,8 @@ _____________________
 <br>
 
 - install with pip package manager([pypi](https://pypi.org/project/menu-setter3/)) in cmd or terminal:
-```.bash
-pip install menu_setter 
+```console
+$ pip install menu_setter 
 ```
 
 <br>
@@ -24,8 +24,8 @@ _____________________
 <br>
 
 - init config files with following command:
-```.bash
-python3 -m menu_setter ms-init
+```console
+$ python3 -m menu_setter ms-init
 ```
 
 <br>
