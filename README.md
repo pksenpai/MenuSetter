@@ -16,11 +16,12 @@ pip install menu_setter
 ```
 python3 -m menu_setter ms-init
 ```
+
 <br>
+
 > [!TIP]
 > if `ms_config` directory created but json file does not exist use `-j` after command:
-> <br>
-> ` python3 -m menu_setter ms-init -j `
+> ```python3 -m menu_setter ms-init -j```
 
 # How To Dev?
 ...
