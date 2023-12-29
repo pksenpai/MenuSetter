@@ -8,8 +8,9 @@ This module is under development and will become more powerful.
 
 <br>
 
-1. ### Installation
 -------------------
+1. ### Installation
+
 <br>
 
 - install with pip package manager in cmd or terminal:
@@ -19,8 +20,9 @@ pip install menu_setter
 
 <br>
 
+_____________________
 2. ### Initialization
----------------------
+
 <br>
 
 - init config files with following command:
