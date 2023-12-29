@@ -11,7 +11,7 @@ _____________________
 
 <br>
 
-- [^1](https://pypi.org/project/menu-setter3/): install with pip package manager in cmd or terminal:
+- install with pip package manager([pypi](https://pypi.org/project/menu-setter3/)) in cmd or terminal:
 ```
 pip install menu_setter 
 ```
