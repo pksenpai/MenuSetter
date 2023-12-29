@@ -4,11 +4,11 @@ a dynamic menu for easier customization using by json.
 This module is under development and will become more powerful.
 
 ## How To Use?
-### Installation
+1- Installation
 
 <br>
 
-> install with pip package manager in cmd or terminal:
+- install with pip package manager in cmd or terminal:
 
 <br>
 
@@ -16,8 +16,8 @@ This module is under development and will become more powerful.
 pip install menu_setter 
 ```
   
-### Initialization
-> init config files with following command:
+1- Initialization
+- init config files with following command:
 
 <br>
 
