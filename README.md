@@ -5,14 +5,19 @@ This module is under development and will become more powerful.
 
 <h2>How To Use?</h2>
 <h3>Installation</h3>
-- install with pip package manager in cmd or terminal:
++ install with pip package manager in cmd or terminal:
+
+<br>
 
 ``` 
 pip install menu_setter 
 ```
 
 <h3>Initialization</h3>
-* init config files with following command:
++ init config files with following command:
+
+<br>
+
 ```
 python3 -m menu_setter ms-init
 ```
