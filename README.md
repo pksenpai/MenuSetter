@@ -6,16 +6,16 @@ This module is under development and will become more powerful.
 <h2>How To Use?</h2>
 <h4>Installation</h4>
 - install with pip package manager in cmd or terminal:
-<br>
+
 ``` 
 pip install menu_setter 
 ```
-<br>
+
 <h4>Initialization</h4>
 - init config files with following command:
-<br>
+
 <sup> python3 -m menu_setter ms-init </sup>
-<br>
+
 > [!TIP]
 > if `ms_config` directory created but json file does not exist use `-j` after command:
 > <br>
