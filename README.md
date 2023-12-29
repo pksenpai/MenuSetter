@@ -3,12 +3,11 @@ a dynamic menu for easier customization using by json.
 <br>
 This module is under development and will become more powerful.
 
-
-<summary><h2>How To Use?</h2><summary>
+<h2>How To Use?</h2>
 <h3>Installation</h3>
 
 <br>
-<details>
+
 > install with pip package manager in cmd or terminal:
 
 <br>
@@ -16,7 +15,6 @@ This module is under development and will become more powerful.
 ```
 pip install menu_setter 
 ```
-<details>
   
 <h3>Initialization</h3>
 > init config files with following command:
