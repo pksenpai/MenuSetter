@@ -4,23 +4,20 @@ a dynamic menu for easier customization using by json.
 This module is under development and will become more powerful.
 
 ## How To Use?
-1- Installation
+1. Installation
 
 <br>
 
 - install with pip package manager in cmd or terminal:
-
-<br>
-
 ```
 pip install menu_setter 
 ```
   
-1- Initialization
-- init config files with following command:
+2. Initialization
 
 <br>
 
+- init config files with following command:
 ```
 python3 -m menu_setter ms-init
 ```
