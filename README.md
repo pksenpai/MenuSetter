@@ -9,7 +9,7 @@ This module is under development and will become more powerful.
 
 <br>
 <details>
-+ install with pip package manager in cmd or terminal:
+> install with pip package manager in cmd or terminal:
 
 <br>
 
@@ -19,7 +19,7 @@ pip install menu_setter
 <details>
   
 <h3>Initialization</h3>
-+ init config files with following command:
+> init config files with following command:
 
 <br>
 
