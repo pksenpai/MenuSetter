@@ -3,9 +3,13 @@ a dynamic menu for easier customization using by json.
 <br>
 This module is under development and will become more powerful.
 
-## How To Use?
-1. ### Installation
+## How To Use? 🍡
+> you can use this with 4 easy steps
 
+<br>
+
+1. ### Installation
+-------------------
 <br>
 
 - install with pip package manager in cmd or terminal:
@@ -15,8 +19,8 @@ pip install menu_setter
 
 <br>
 
-2. Initialization
-
+2. ### Initialization
+---------------------
 <br>
 
 - init config files with following command:
