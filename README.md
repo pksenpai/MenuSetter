@@ -12,7 +12,7 @@ _____________________
 <br>
 
 - install with pip package manager([pypi](https://pypi.org/project/menu-setter3/)) in cmd or terminal:
-$ ```
+```
 pip install menu_setter 
 ```
 
@@ -24,7 +24,7 @@ _____________________
 <br>
 
 - init config files with following command:
-$ ```
+```
 python3 -m menu_setter ms-init
 ```
 
@@ -41,10 +41,14 @@ python3 -m menu_setter ms-init
 
 <br>
 
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+| Commands | Usage | Options | Usage |
+| :--- | :---: | :---: | ---: |
+| ms-init | initialize the config files | {-j --json}, [-n --name] |
+| ms-show | xxxxxxxx |        |
+| ms-call | xxxxxxxx | -v --verbose |
+
+
+<br>
 
 ## How To Dev?
 ...
