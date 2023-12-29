@@ -13,7 +13,7 @@ _____________________
 
 - install with pip package manager([pypi](https://pypi.org/project/menu-setter3/)) in cmd or terminal:
 ```
-pip install menu_setter 
+pip install menu_setter3 
 ```
 
 <br>
@@ -43,7 +43,8 @@ python3 -m menu_setter ms-init
 
 | Commands | Usage | Options | Usage |
 | :--- | :---: | :---: | ---: |
-| ms-init | initialize the config files | {-j --json}, [-n --name] |
+| ms-init | initialize the ms_config 
+directory for config menu | {-j --json}, [-n --name] |
 | ms-show | xxxxxxxx |        |
 | ms-call | xxxxxxxx | -v --verbose |
 
