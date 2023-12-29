@@ -31,7 +31,7 @@ python3 -m menu_setter ms-init
 <br>
 
 > [!TIP]
->  if `ms_config` directory is exist but json file does not exist use `-j` option for create a ready-made menu template in Jason format:
+>  If the `ms_config` directory exists but the json file does not exist, use the `-j` option to create a ready-made menu template in Jason format:
 > <br>
 > ```python3 -m menu_setter ms-init -j```
 
