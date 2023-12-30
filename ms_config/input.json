@@ -5,19 +5,11 @@
         {
             "title": "Login",
             "act": {
-                "M": "test001",
+                "M": "test002",
                 "F": "login",
                 "args": [
                     ":D",
                     22
-                ],
-                "C": "test",
-                "attr": [
-                    "Parsa",
-                    "Ahmadian",
-                    "PKPY",
-                    "pk",
-                    "123"
                 ]
             },
             "sub": [
@@ -51,10 +43,14 @@
             ]
         },
         {
-            "title": "SignUp",
+            "title": "Login2",
             "act": {
                 "M": "test001",
-                "F": "signup",
+                "F": "login",
+                "args": [
+                    ":D",
+                    22
+                ],
                 "C": "test",
                 "attr": [
                     "Parsa",

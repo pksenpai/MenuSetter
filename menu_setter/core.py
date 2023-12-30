@@ -84,15 +84,20 @@ class Core:
             print(self.content)
 
         if self.module:
-            core_object = getattr(self.module, self.className) # obj = ModuleName.ClassName()
+            if self.className: # if class exists
+                core_object = getattr(self.module, self.className) # obj = ModuleName.ClassName()
             
-            if self.attribute: # if attr exist|
-                self.obj = core_object(*self.attribute) # obj = Module.Class(Attributes)
-            else:
-                self.obj = core_object() # obj = Module.Class()
-                
-                
-            return self.obj
+                if self.attribute: # if attr exists|
+                    self.obj = core_object(*self.attribute) # obj = Module.Class(Attributes)
+                else:
+                    self.obj = core_object() # obj = Module.Class()
+            
+                return self.obj, 'c'
+                    
+            if self.function: # if class NOT exists|(Only function base!)
+                self.obj = getattr(self.module, self.function)
+                return self.obj, 'f'
         
         else:
-            return False
+            return False, None
+    
