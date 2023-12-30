@@ -42,11 +42,22 @@ python3 -m menu_setter ms-init
 
 <br>
 
-| Commands | Usage | Options | Usage |
-| :--- | :---: | :---: | ---: |
-| ms-init | initialize the ms_config directory <br>for configuration menu | {-j --json}, [-n --name] |
-| ms-show | xxxxxxxx |        |
-| ms-call | xxxxxxxx | -v --verbose |
+- ### Commands
+| Commands | Usage |
+| :--- | ---: |
+| ms-init | initialize the ms_config directory <br>for configuration menu |
+| ms-show | xxxxxxxx |     
+| ms-call | xxxxxxxx |
+
+- ### Optionals
+| Options      | Usage |
+| :---         | ---:  |
+| -n --name    | default menu header name is "Main Menu". <br>you can use '-n' or '--name' for change header name.|
+| -j --json    | If the `ms_config` directory exists but <br>the json file does not exist, <br>use `-j` option to create a ready-made <br>menu template in Jason format |
+| -v --verbose | Show with More details |
+
+
+
 
 </details>
 <br>
