@@ -43,23 +43,35 @@ python3 -m menu_setter ms-init
 <br>
 
 - ### Commands
-| Commands | Usage |
-| :--- | ---: |
-| ms-init | initialize the ms_config directory <br>for configuration menu |
-| ms-show | xxxxxxxx |     
-| ms-call | xxxxxxxx |
+| Commands |                           Usage                               |
+| :---     |                                                          ---: |
+| ms-init  | initialize the ms_config directory <br>for configuration menu |
+| ms-show  | show the menu in main json file                               |     
+| ms-call  | move in menu options without connect to main project          |
 
 - ### Optionals
-| Related command | Options       | Usage |
-| :---            | :---:         | ---:  |
-| ms-init         | -n <br>--name     | default menu header name is "Main Menu". <br>you can use '-n' or '--name' for change header name.|
-| ms-init         | -j <br>--json     | If the `ms_config` directory exists but the json file does not exist, <br>use `-j` option to create a ready-made menu template in Jason format |
-| ms-call <br>ms-show | -v <br>--verbose | Show with More details |
-
-
+| Related command | Options       |                                                Usage                                                                  |
+| :---            | :---:         |                                                                                                                  ---: |
+| ms-init         | -n <br>--name | default menu header name is "Main Menu". <br>you can use '-n' or '--name' for change header name.                     |
+| ms-init         | -j <br>--json | If the `ms_config` directory exists but the json file does not exist, <br>use `-j` option to create a ready-made menu template in Jason format                                                                                                                                  |
+| ms-call         | -v <br>--verbose | Show with More details                                                                                             |
 
 </details>
 <br>
+
+_____________________
+3. ### Connect to Project
+
+<br>
+
+- add following code to your main.py file project:
+```py
+from menu_setter import connector
+```
+
+```py
+connector.connect()
+```
 
 ## How To Dev?
 ...
