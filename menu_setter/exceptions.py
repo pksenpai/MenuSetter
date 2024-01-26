@@ -1,6 +1,5 @@
-class Message_except():
-    
-    def missed_argument(missed_number, message, missed_title):
+class Message_except(Exception):
+    def missed_argument(self, missed_number, message, missed_title):
         error="ERROR: missing {} required positional argument --> ('{}', <!MISSED HERE!>={})".format(
             missed_number,
             message,
@@ -9,8 +8,8 @@ class Message_except():
         
         return error
 
-class Core_except:
-    
-    def wrong_act_type(act):
+class Core_except(Exception):
+    def wrong_act_type(self, act):
         error=f"'{act}' is not a dict!\n'{act}' must be in dict! XO"
         return error
+    

@@ -3,10 +3,9 @@ from .setter import call_menu
 from .exceptions import Core_except as exception
 from importlib import import_module as _import_
 from ast import literal_eval
-
+import os
 
 """\__________________________EXTRA TOOLS__________________________/"""
-
 def import_module(module_name):
     result = _import_(module_name)
     return result
@@ -28,7 +27,7 @@ def rm_parenthese(myList):
 class Core:
 
     def __init__(self, moduleName: str, func: str, args: tuple, className: str, attr: tuple):
-        self.module = import_module(moduleName) if moduleName else moduleName
+        self.module = import_module(moduleName) if moduleName else None
         
         self.function = func
         self.argument = rm_parenthese(args)
@@ -46,29 +45,33 @@ class Core:
             if isinstance(act, dict):
                 """\_____________Print_____________/"""
                 self.content = act.get("print")
-                                
+                
                 """\____________Module____________/""" # import ModuleName
-                module = act.get("M")
+                module = act.get("M"); print(module)
                 self.module = import_module(module) if not self.module and module else self.module 
-
                 """\____________Class____________/"""
-                className = act.get("C")
+                className = act.get("C"); print(className)
                 self.className = className if className else self.className
                 """\______Attr______/"""
-                attr = act.get("attr")
+                attr = act.get("attr"); print(attr)
                 self.attribute = rm_parenthese(attr) if attr else self.attribute# convert list to str
                 
                 """\____________Func____________/"""
-                function = act.get("F")
+                function = act.get("F"); print(function)
                 self.function = function if function else self.function
                 """\______Args______/"""
-                args = act.get("args")
+                args = act.get("args"); print(args)
                 self.argument = rm_parenthese(args) if args else self.argument # convert list to str
+                
+            elif act == "back":
+                self.function, self.argument = "back", None
                 
             elif act == "exit": # %%%CHECK%%%
                 exit()
             else:
-                raise exception.wrong_act_type(act)
+                # raise exception.wrong_act_type(act)
+                print(f"'{act}' is not a dict!\n'{act}' must be in dict! XO")
+                
             
             yield self.function, self.argument # method(args)
 

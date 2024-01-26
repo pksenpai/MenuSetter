@@ -56,9 +56,12 @@ import os
 
 """\_________________________________BODY_________________________________/"""
 class MenuSet:
+    unactive_cmd_history = []
+    
     def __init__(self, menu_instance, header, space) -> None:
         self.menu_instance = menu_instance
         self.cache_data = None
+        self.active_cmd_history = [] # %%%NEW%%% 0.1.4 bugfix
         self.last_header = None
         self.header = header
         self.space = space
@@ -69,22 +72,24 @@ class MenuSet:
     """\____________________________INPUT METHODS____________________________/"""
     
     def option_act(self):
-        try:
-            flag = False
-            while flag==False:
+        flag = False
+        while flag==False:
+            try:
                 print(' ______________________________')
                 print('/')
                 self.cmd = int(input('\_Select the option number>>> ')) # CHOOSE OPTION FROM MENU
                 if len(self.cache_data) < self.cmd:
                     print()
-                    print(f'>>> this [{self.cmd}- ] option is NOT EXIST!!! :O')
+                    print(f'ERROR: this [{self.cmd}- ] option is NOT EXIST!!! :O')
                     print()
                     
                 else:
                     flag = True
-            flag = None
-        except ValueError:
-            print("ERROR: Your request is incorrect, please enter a number! :(")
+            except ValueError:
+                print()
+                print("ERROR: Your request is incorrect, please enter a number! :(")
+                print()
+        flag = None
 
     """\____________________________BODY METHODS____________________________/"""
 
@@ -128,12 +133,36 @@ class MenuSet:
         
 
         """ <Command Input Func> """
-        self.option_act()
+        # self.__class__.unactive_cmd_history = [2, 4, 3, (2)--> last command]
+        def run_cmd_history(): # %%%NEW%%% 0.1.4 bugfix
+            for index, cmd in enumerate(self.active_cmd_history):
+                yield index, cmd
+            
+        if self.active_cmd_history: # %%%NEW%%% 0.1.4 bugfix
+            for index, cmd in run_cmd_history:
+                self.cmd = cmd
+                self.active_cmd_history.pop(index)
+                self.menu_instance = self.cache_data.get(self.cmd)
+                self.menu_print()
+        else: # %%%NEW%%% 0.1.4 bugfix
+            if self.cmd: 
+                self.__class__.unactive_cmd_history.append(self.cmd)
+            self.option_act()
+
+        if self.cmd == num+1: # %%%NEW%%% 0.1.4 bugfix
+            try:
+                self.__class__.unactive_cmd_history.pop()
+                self.active_cmd_history = self.__class__.unactive_cmd_history
+            except IndexError:
+                print()
+                print("ERROR: No previous page available! X3")
+                print()
+                self.option_print()
         
         """ <Fast EXIT> """
         if self.cmd == num+2:
             exit()
-            
+
         """ <Go On option that user choosed> """
         self.menu_instance = self.cache_data.get(self.cmd)
         self.menu_print()
