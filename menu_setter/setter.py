@@ -58,13 +58,14 @@ import os
 class MenuSet:
     unactive_cmd_history = []
     
-    def __init__(self, menu_instance, header, space) -> None:
+    def __init__(self, menu_instance:dict, header:str, space:str, active:bool = False):
         self.menu_instance = menu_instance
         self.cache_data = None
         self.active_cmd_history = [] # %%%NEW%%% 0.1.4 bugfix
         self.last_header = None
         self.header = header
         self.space = space
+        self.active = active
         self.value = None
         self.action = None
         self.cmd = None
@@ -124,6 +125,7 @@ class MenuSet:
                 # print('=================')
                 """ <Separate title & sub:ACT|Sub_Option> """
                 option : dict
+                print('*'*10, option)
                 title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
                 
                 """ <Show Option's> """
@@ -137,9 +139,13 @@ class MenuSet:
         def run_cmd_history(): # %%%NEW%%% 0.1.4 bugfix
             for index, cmd in enumerate(self.active_cmd_history):
                 yield index, cmd
-            
+        
+        if self.active:
+            self.active_cmd_history = self.__class__.unactive_cmd_history
+            self.active = False
+        
         if self.active_cmd_history: # %%%NEW%%% 0.1.4 bugfix
-            for index, cmd in run_cmd_history:
+            for index, cmd in run_cmd_history():
                 self.cmd = cmd
                 self.active_cmd_history.pop(index)
                 self.menu_instance = self.cache_data.get(self.cmd)
@@ -152,7 +158,6 @@ class MenuSet:
         if self.cmd == num+1: # %%%NEW%%% 0.1.4 bugfix
             try:
                 self.__class__.unactive_cmd_history.pop()
-                self.active_cmd_history = self.__class__.unactive_cmd_history
             except IndexError:
                 print()
                 print("ERROR: No previous page available! X3")
@@ -189,6 +194,9 @@ class MenuSet:
                         self.menu_UI(self.last_header)
                         
                     """ <Show Menu Option> """
+                    print('*'*10,'value:', value)
+                    print('*'*10,'instance:', self.menu_instance)
+                    
                     self.value = value
                     self.option_print()
 
@@ -212,12 +220,15 @@ def call_menu():# | data_extractor --data--> SETTER --data--> CORE |
     print('\n>===============================================@')
     menu_data = data_extractor.menu_ext() # get data
     menu_data: dict
+    active = False # 
     
-    menu_obj = MenuSet(menu_data, 'Main Menu', '\t') # processing data | display menu
-    
-    for act, header in menu_obj.menu_print(): # send data(act)
-        act: dict
-        yield act, header
+    while True:
+        menu_obj = MenuSet(menu_data, 'Main Menu', '\t', active=active) # processing data | display menu
+        for act, header in menu_obj.menu_print(): # send data(act)
+            if act == "back": # %%%NEW%%% 0.1.4 bugfix
+                active = True
+                break
+            yield act, header
 
 if __name__=='__main__':
     for act in call_menu():
