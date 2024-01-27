@@ -50,6 +50,11 @@ class Core:
         self.function = None
         self.argument = None
 
+    def print_header(self):
+        if self.content or self.module:
+            print(f"\n _______________/{self.header}\_______________",
+                "\n/                " + (" "*len(self.header)) + "                \\")
+        
     def method_caller(self):
         for act, self.header in call_menu():
             self.reset() # reset all last instance's!
@@ -84,19 +89,17 @@ class Core:
                 print(f"ERORR: '{act}' is not a dict!\n '{act}' must be in dict! :0")
                 print()
             
-            if not self.content:
+            if self.content:
+                self.print_header()
+                print(self.content)
+            else:
                 yield self.function, self.argument # method(args)
 
     def obj_caller(self) -> object:
         """ 
         Create an object : obj = ModuleName.ClassName(AttributesName)
         """
-        if self.content or self.module:
-            print(f"\n _______________/{self.header}\_______________",
-                "\n/                " + (" "*len(self.header)) + "                \\")
-        
-        if self.content:
-            print(self.content)
+        self.print_header()
 
         if self.module:
             if self.className: # if class exists
