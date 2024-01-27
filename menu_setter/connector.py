@@ -38,14 +38,6 @@ def connect(moduleName=None, func=None, args=None, className=None, attr=None):
     """ Call Action from Main Menu """
     for methodName, args in core.method_caller():
         try:
-            if methodName == "back": # %%%NEW%%% 0.1.4 bugfix
-                connect(
-                    moduleName,
-                    func,
-                    args,
-                    className,
-                    attr
-                )
             
             """ Create an object from class """
             obj, dtype = core.obj_caller()

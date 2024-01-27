@@ -19,12 +19,16 @@
                     "sub": [
                         {
                             "title": "Change Username",
-                            "act": "change_username",
+                            "act": {
+                                 "print": "username changed!"
+            		    },
                             "sub": null
                         },
                         {
                             "title": "Change Password",
-                            "act": "change_password",
+                            "act": {
+                                 "print": "password changed!"
+            		    },
                             "sub": null
                         }
                     ]
@@ -35,7 +39,9 @@
                     "sub": [
                         {
                             "title": "Add New Contact",
-                            "act": "add_contact",
+                            "act":  {
+                                 "print": "Contacts Panel"
+            		    },
                             "sub": null
                         }
                     ]

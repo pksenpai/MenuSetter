@@ -39,41 +39,53 @@ class Core:
         self.header = None
         self.obj = None
     
+    def reset(self): # feature: it will optional in settings
+        self.obj = None 
+        self.content = None 
+        self.module = None
+        
+        self.className = None
+        self.attribute = None
+        
+        self.function = None
+        self.argument = None
+
     def method_caller(self):
         for act, self.header in call_menu():
+            self.reset() # reset all last instance's!
             
             if isinstance(act, dict):
                 """\_____________Print_____________/"""
                 self.content = act.get("print")
                 
                 """\____________Module____________/""" # import ModuleName
-                module = act.get("M"); print(module)
+                module = act.get("M")
                 self.module = import_module(module) if not self.module and module else self.module 
+                
                 """\____________Class____________/"""
-                className = act.get("C"); print(className)
+                className = act.get("C")
                 self.className = className if className else self.className
                 """\______Attr______/"""
-                attr = act.get("attr"); print(attr)
+                attr = act.get("attr")
                 self.attribute = rm_parenthese(attr) if attr else self.attribute# convert list to str
                 
                 """\____________Func____________/"""
-                function = act.get("F"); print(function)
+                function = act.get("F")
                 self.function = function if function else self.function
                 """\______Args______/"""
-                args = act.get("args"); print(args)
+                args = act.get("args")
                 self.argument = rm_parenthese(args) if args else self.argument # convert list to str
-                
-            elif act == "back":
-                self.function, self.argument = "back", None
-                
-            elif act == "exit": # %%%CHECK%%%
+
+            elif act == "exit":
                 exit()
             else:
                 # raise exception.wrong_act_type(act)
-                print(f"'{act}' is not a dict!\n'{act}' must be in dict! XO")
-                
+                print()
+                print(f"ERORR: '{act}' is not a dict!\n '{act}' must be in dict! :0")
+                print()
             
-            yield self.function, self.argument # method(args)
+            if not self.content:
+                yield self.function, self.argument # method(args)
 
     def obj_caller(self) -> object:
         """ 
