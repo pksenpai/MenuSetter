@@ -1,5 +1,5 @@
 # menu setter 3
-A dynamic shell menu for easier customization by json.
+It's a tool with which you can create a dynamic shell menu with easier customization by json.
 <br>
 This module is under development and will become more powerful.
 
