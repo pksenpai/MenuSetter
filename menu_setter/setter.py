@@ -50,27 +50,28 @@ exmple:
 		]}
 
 """
-"""\____________________________IMPORT MODULES____________________________/"""
+"""\____________________________[IMPORT MODULES]____________________________/"""
 from ms_config import data_extractor
 import os
 
-"""\_________________________________BODY_________________________________/"""
+"""\_________________________________[BODY]_________________________________/"""
 class MenuSet:
-    unactive_cmd_history = []
+    unactive_cmd_history: list = []
+    hard_header: str = None
     
     def __init__(self, menu_instance:dict, header:str, space:str, active:bool = False):
         self.menu_instance = menu_instance
-        self.cache_data = None
-        self.active_cmd_history = [] # %%%NEW%%% 0.1.4 bugfix
-        self.last_header = None
-        self.header = header
-        self.space = space
-        self.active = active
-        self.value = None
-        self.action = None
-        self.cmd = None
+        self.cache_data: dict = None
+        self.active_cmd_history: dict = None # %%%NEW%%% 0.1.4 bugfix
+        self.last_header: str = None
+        self.header: str = header
+        self.space: str = space
+        self.active: bool = active
+        self.value: list = None
+        self.action: dict = None
+        self.cmd: int = None
         
-    """\____________________________INPUT METHODS____________________________/"""
+    """\____________________________[INPUT METHODS]____________________________/"""
     
     def option_act(self):
         flag = False
@@ -90,70 +91,79 @@ class MenuSet:
                 print()
                 print("ERROR: Your request is incorrect, please enter a number! :(")
                 print()
+        self.__class__.hard_header = self.last_header
+        self.last_header = self.header
         flag = None
-
-    """\____________________________BODY METHODS____________________________/"""
-
-    def option_print(self):
-        
-        if self.value: # if value of {sub: []} is empty go back 
+    """\_______________________________[TOOLS]_______________________________/"""
+    def indexing(self, print_options=True):
+        if print_options:
             self.show_header(self.header) # menu header --> >Main Menu<
-            self.last_header = self.header
-            self.cache_data = {}
-            for num, option in enumerate(self.value, start=1):
+        
+        self.cache_data = {}
+        
+        for num, option in enumerate(self.value, start=1):
+            if print_options:
                 """ <Separate title & sub:ACT|Sub_Option> """
                 option : dict
                 title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
                 
                 """ <Show Option's> """
                 print(f'{self.space}|-> {num}-{title}')
-                
-                """ <Set value option with index for easy act> """
-                self.cache_data.setdefault(num, option)
-                
-            """ <Set value option with index for back & exit options> """ 
-            self.cache_data.setdefault(num+1, {"title": "Back", "act": "back", "sub": None})
-            print(f'{self.space}|-> {num+1}-Back') 
-            self.cache_data.setdefault(num+2, {"title": "Exit", "act": "exit", "sub": None})
-            print(f'{self.space}|-> {num+2}-Exit')
             
-        else:
-            self.show_header(self.last_header) # menu header --> >Main Menu<
-            for num, option in enumerate(self.cache_data.values(), start=1):
-                # print('=================')
-                # print(option)
-                # print('=================')
-                """ <Separate title & sub:ACT|Sub_Option> """
-                option : dict
-                print('*'*10, option)
-                title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
-                
-                """ <Show Option's> """
-                print(f'{self.space}|-> {num}-{title}')
-        
-        print('@_________________') # menu footer --> @____________...
-        
+            """ <Indexing: Set value option with index for easy act> """
+            self.cache_data.setdefault(num, option)
+        return num
+    
+    def run_cmd_history(self): # %%%NEW%%% 0.1.4 bugfix
+        for cmd in self.active_cmd_history:
+            num = self.indexing(print_options=False)
+            self.menu_instance = self.cache_data.get(cmd)
+            for key, value in self.menu_instance.items():
+                if key == 'sub':
+                    self.value = value
+        self.header = self.__class__.hard_header
+        return num
+    
+    """\____________________________[BODY METHODS]____________________________/"""
+    def option_print(self):
 
-        """ <Command Input Func> """
-        # self.__class__.unactive_cmd_history = [2, 4, 3, (2)--> last command]
-        def run_cmd_history(): # %%%NEW%%% 0.1.4 bugfix
-            for index, cmd in enumerate(self.active_cmd_history):
-                yield index, cmd
-        
         if self.active:
             self.active_cmd_history = self.__class__.unactive_cmd_history
             self.active = False
+        else:
+            if self.value: # if value of {sub: []} is empty go back 
+
+                num = self.indexing()
+                
+                """ <Set value option with index for back & exit options> """ 
+                self.cache_data.setdefault(num+1, {"title": "Back", "act": "back", "sub": None})
+                print(f'{self.space}|-> {num+1}-Back') 
+                self.cache_data.setdefault(num+2, {"title": "Exit", "act": "exit", "sub": None})
+                print(f'{self.space}|-> {num+2}-Exit')
+                
+            else:
+                self.show_header(self.last_header) # menu header --> >Main Menu<
+                for num, option in enumerate(self.cache_data.values(), start=1):
+                    # print('=================')
+                    # print(option)
+                    # print('=================')
+                    """ <Separate title & sub:ACT|Sub_Option> """
+                    option : dict
+                    title = option.get("title") # title = title of option, sub = (ACTION or Another OPTION's)
+                    
+                    """ <Show Option's> """
+                    print(f'{self.space}|-> {num}-{title}')
+            
+            print('@_________________') # menu footer --> @____________...
         
         if self.active_cmd_history: # %%%NEW%%% 0.1.4 bugfix
-            for index, cmd in run_cmd_history():
-                self.cmd = cmd
-                self.active_cmd_history.pop(index)
-                self.menu_instance = self.cache_data.get(self.cmd)
-                self.menu_print()
-        else: # %%%NEW%%% 0.1.4 bugfix
-            if self.cmd: 
-                self.__class__.unactive_cmd_history.append(self.cmd)
-            self.option_act()
+            num = self.run_cmd_history()
+            self.active_cmd_history = None
+            self.option_print()
+            
+        """ <Command Input Func> """
+        # self.__class__.unactive_cmd_history = [2, 4, 3, (2)--> last command]
+        self.option_act()
 
         if self.cmd == num+1: # %%%NEW%%% 0.1.4 bugfix
             try:
@@ -163,6 +173,8 @@ class MenuSet:
                 print("ERROR: No previous page available! X3")
                 print()
                 self.option_print()
+        else:
+            self.__class__.unactive_cmd_history.append(self.cmd)
         
         """ <Fast EXIT> """
         if self.cmd == num+2:
@@ -170,11 +182,11 @@ class MenuSet:
 
         """ <Go On option that user choosed> """
         self.menu_instance = self.cache_data.get(self.cmd)
-        self.menu_print()
+        self.separator()
 
-    """\____________________________DIVIDER____________________________/"""
+    """\____________________________[SEPARATOR]____________________________/"""
 
-    def menu_print(self):
+    def separator(self):
         self.menu_instance: dict
         
         while True:
@@ -194,13 +206,13 @@ class MenuSet:
                         self.menu_UI(self.last_header)
                         
                     """ <Show Menu Option> """
-                    print('*'*10,'value:', value)
-                    print('*'*10,'instance:', self.menu_instance)
-                    
+                    # TEST
+                    # print('*'*10,'value:', value)
+                    # print('*'*10,'instance:', self.menu_instance)
                     self.value = value
                     self.option_print()
 
-    """\____________________________DESIGNER METHODS____________________________/"""
+    """\____________________________[DESIGNER METHODS]____________________________/"""
     @staticmethod
     def show_header(header):
         """ <Display Menu Header> """
@@ -224,7 +236,7 @@ def call_menu():# | data_extractor --data--> SETTER --data--> CORE |
     
     while True:
         menu_obj = MenuSet(menu_data, 'Main Menu', '\t', active=active) # processing data | display menu
-        for act, header in menu_obj.menu_print(): # send data(act)
+        for act, header in menu_obj.separator(): # send data(act)
             if act == "back": # %%%NEW%%% 0.1.4 bugfix
                 active = True
                 break

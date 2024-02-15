@@ -18,11 +18,19 @@
                     "act": null,
                     "sub": [
                         {
-                            "title": "Change Username",
+                            "title": "Username",
                             "act": {
                                  "print": "username changed!"
             		    },
-                            "sub": null
+                            "sub": [
+    	                        {
+		                    "title": "Change Username",
+		                    "act": {
+		                         "print": "username changed!"
+         	    		    },
+		                    "sub": null
+		                }
+                            ]
                         },
                         {
                             "title": "Change Password",
